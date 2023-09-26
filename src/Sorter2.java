@@ -8,12 +8,18 @@ public class Sorter2 {
 
         System.out.println("THE CONFLICT STATEMENT FROM THE SECOND COMPUTER");
         ArrayList<String> arr=new ArrayList<>();
-                arr=(readStudentList("Student List.txt"));
+        arr=(readStudentList("Student List.txt"));
         ArrayList<ArrayList<String>> groups = new ArrayList<>();
+        ArrayList<ArrayList<String>> groups2 = new ArrayList<>();
         groups= generateRandomGroups(arr,4);
-                System.out.println(groups);
-                sort(groups);
-                System.out.println(groups);
+        groups2= generateRandomGroups(arr,4);
+        System.out.println("Group1:"+groups);
+        System.out.println("Group2:"+groups2);
+        sor2(groups);
+        System.out.println("After selectionSort group1:"+groups);
+        sort(groups2);
+        System.out.println("After insertingSort group2:"+groups2);
+
     }
 
     public static ArrayList<String> readStudentList(String filename){
@@ -53,11 +59,26 @@ public class Sorter2 {
             }
             arr.set(j + 1, tmp);
         }
+    }public static void selectionSortNames(ArrayList<String> arr) {
+        int n = arr.size();
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr.get(j).compareTo(arr.get(minIndex)) < 0) {
+                    minIndex = j;
+                }
+            }
+            Collections.swap(arr, i, minIndex);
+        }
     }
+
     public static void sort(ArrayList<ArrayList<String>> arr) {
         for (ArrayList<String> subList : arr) {
             insertionSort(subList);
         }
+    } public static void sor2(ArrayList<ArrayList<String>> arr) {
+        for (ArrayList<String> subList : arr) {
+            selectionSortNames(subList);
+        }
     }
 }
-
