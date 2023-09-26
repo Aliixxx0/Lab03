@@ -7,9 +7,13 @@ public class Sorter2 {
     public static void main(String[] args) throws Exception {
 
         System.out.println("THE CONFLICT STATEMENT FROM THE SECOND COMPUTER");
-
-        System.out.println(generateRandomGroups(readStudentList("Student List.txt"),4));
-
+        ArrayList<String> arr=new ArrayList<>();
+                arr=(readStudentList("Student List.txt"));
+        ArrayList<ArrayList<String>> groups = new ArrayList<>();
+        groups= generateRandomGroups(arr,4);
+                System.out.println(groups);
+                sort(groups);
+                System.out.println(groups);
     }
 
     public static ArrayList<String> readStudentList(String filename){
@@ -38,7 +42,22 @@ public class Sorter2 {
         }
         return groups;
     }
-    public int ali(){
-        return 2;
+    public static void insertionSort(ArrayList<String> arr) {
+        int n = arr.size();
+        for (int i = 1; i < n; i++) {
+            String tmp = arr.get(i);
+            int j = i - 1;
+            while (j >= 0 && tmp.compareTo(arr.get(j)) < 0) {
+                arr.set(j + 1, arr.get(j));
+                j--;
+            }
+            arr.set(j + 1, tmp);
+        }
+    }
+    public static void sort(ArrayList<ArrayList<String>> arr) {
+        for (ArrayList<String> subList : arr) {
+            insertionSort(subList);
+        }
     }
 }
+
