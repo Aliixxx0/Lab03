@@ -38,4 +38,7 @@ public class Sorter2 {
         }
         return groups;
     }
+    public int ali(){
+        return 2;
+    }
 }
